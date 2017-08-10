@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Simple Map</title>
+        <title>Wevo GPS</title>
         <meta name="viewport" content="initial-scale=1.0">
         <meta charset="utf-8">
         <style>
@@ -48,30 +48,14 @@
                 ws.onmessage = function (event) {
                     var message = event.data;
                     console.log('Message: ' + message);
-                    var lat_lan_arr = message.split(",");
+                    var arr = message.split(",");
 
-                    if(lat_lan_arr.length < 2) {
+                    if(arr.length < 2) {
                         return;
                     } 
-                    pos = {
-                        lat: lat_lan_arr[0],
-                        lon: lat_lan_arr[1]
-                    }
-                    if (pos.lat === null || pos.lon === null) {
-                        return;
-                    }
-
-                    if (state.lat === 0 && state.lng === 0) {
-                        state.lat = pos.lat;
-                        state.lng = pos.lon;
-                    } else {
-                        state.lat = (1 - alpha) * state.lat + alpha * pos.lat;
-                        state.lng = (1 - alpha) * state.lng + alpha * pos.lon;
-                    }
-
-                    map.setCenter(state);
-                    marker.setPosition(state);
                     
+                    marker.setPosition( new google.maps.LatLng( arr[0], arr[1] ) );
+                    map.panTo( new google.maps.LatLng( arr[0], arr[1] ) );
                 };
             }
 

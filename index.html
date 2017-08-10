@@ -46,10 +46,17 @@
                 var ws = new WebSocket(HOST);
 
                 ws.onmessage = function (event) {
-                    var pos = event.data;
-                    console.log('Pos: ' + pos);
+                    var message = event.data;
+                    console.log('Message: ' + message);
+                    var lat_lan_arr = message.split(",");
 
-                    /* 
+                    if(lat_lan_arr.length < 2) {
+                        return;
+                    } 
+                    pos = {
+                        lat: lat_lan_arr[0],
+                        lon: lat_lan_arr[1]
+                    }
                     if (pos.lat === null || pos.lon === null) {
                         return;
                     }
@@ -64,7 +71,7 @@
 
                     map.setCenter(state);
                     marker.setPosition(state);
-                    */
+                    
                 };
             }
 

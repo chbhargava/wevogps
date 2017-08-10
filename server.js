@@ -20,6 +20,7 @@ wss.on('connection', (ws) => {
 
 
 wss.on('request', function(request) {
+  console.log('On request!');
   var connection = request.accept(null, request.origin);
 
   // This is the most important callback for us, we'll handle

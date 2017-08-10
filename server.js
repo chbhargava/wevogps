@@ -18,8 +18,29 @@ wss.on('connection', (ws) => {
   ws.on('close', () => console.log('Client disconnected'));
 });
 
+
+wss.on('request', function(request) {
+  var connection = request.accept(null, request.origin);
+
+  // This is the most important callback for us, we'll handle
+  // all messages from users here.
+  connection.on('message', function(message) {
+    console.log('Message received!');
+    console.log(message);
+    if (message.type === 'utf8') {
+      console.log('utf8');
+    }
+  });
+
+  connection.on('close', function(connection) {
+    console.log('Client closed');
+  });
+});
+
+/*
 setInterval(() => {
   wss.clients.forEach((client) => {
     client.send(new Date().toTimeString());
   });
 }, 1000);
+*/

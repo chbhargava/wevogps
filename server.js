@@ -13,11 +13,19 @@ const server = express()
 
 const wss = new SocketServer({ server });
 
+let lat = 17.48036;
+let lon = 78.41143;
+
 wss.on('connection', (ws) => {
   console.log('Client connected');
   
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
+    
+    wss.clients.forEach((client) => {
+      lon += 0.00002 
+      client.send(JSON.parse(`{"lat": ${lat}, "lon" : ${lon}}`));
+    });
   });
   
   ws.on('close', () => console.log('Client disconnected'));

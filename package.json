@@ -1,26 +1,21 @@
 {
-  "name": "wevogps_api",
+  "name": "websockets-vanilla",
   "version": "1.0.0",
-  "description": "Wevo GPS Tracker API Application",
-  "main": "app.js",
+  "engines": {
+    "node": "6.2.0"
+  },
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "deploy": "gcloud app deploy",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/venky252003/WEVOGPS_API.git"
-  },
-  "author": "venky",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/venky252003/WEVOGPS_API/issues"
-  },
-  "homepage": "https://github.com/venky252003/WEVOGPS_API#readme",
   "dependencies": {
-    "body-parser": "^1.17.2",
-    "express": "^4.15.3",
-    "socket.io": "^2.0.3"
+    "bufferutil": "1.2.1",
+    "express": "4.13.4",
+    "utf-8-validate": "1.2.1",
+    "ws": "1.1.0"
   }
 }

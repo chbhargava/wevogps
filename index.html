@@ -45,9 +45,13 @@
                 var HOST = location.origin.replace(/^http/, 'ws')
                 var ws = new WebSocket(HOST);
 
-                ws.onmessage = function (event) {
-                    var message = event.data;
+                const reader = new FileReader();
+
+                // This fires after the blob has been read/loaded.
+                reader.addEventListener('loadend', (e) => {
+                    const message = e.srcElement.result;
                     console.log('Message: ' + message);
+
                     var loc_time = message.split(":");
                     if(loc_time.length < 2) {
                         return;
@@ -60,6 +64,9 @@
                     
                     marker.setPosition( new google.maps.LatLng( arr[0], arr[1] ) );
                     map.panTo( new google.maps.LatLng( arr[0], arr[1] ) );
+                });
+                ws.onmessage = function (event) {
+                    reader.readAsText(event.data);
                 };
             }
 

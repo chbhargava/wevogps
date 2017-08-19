@@ -48,8 +48,12 @@
                 ws.onmessage = function (event) {
                     var message = event.data;
                     console.log('Message: ' + message);
-                    var arr = message.split(",");
-
+                    var loc_time = message.split(":");
+                    if(loc_time.length < 2) {
+                        return;
+                    }
+                    var location = loc_time[0];
+                    var arr = location.split(",");
                     if(arr.length < 2) {
                         return;
                     } 

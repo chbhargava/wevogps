@@ -19,6 +19,17 @@
         <div id="map"></div>
         
         <script>
+            function ping() {
+                    ws.send('__ping__');
+                    tm = setTimeout(function () {
+                        // Connection Closed!
+                    }, 5000);
+            }
+
+            function pong() {
+                clearTimeout(tm);
+            }
+
             function initMap() {
 
                 var alpha = 0.4;
@@ -45,6 +56,7 @@
                 var HOST = location.origin.replace(/^http/, 'ws')
                 var ws = new WebSocket(HOST);
 
+                // Blob reader: 
                 const reader = new FileReader();
 
                 // This fires after the blob has been read/loaded.
@@ -65,8 +77,17 @@
                     marker.setPosition( new google.maps.LatLng( arr[0], arr[1] ) );
                     map.panTo( new google.maps.LatLng( arr[0], arr[1] ) );
                 });
+
+                ws.onopen = function () {
+                    setInterval(ping, 30000);
+                }
                 ws.onmessage = function (event) {
-                    reader.readAsText(event.data);
+                    var data = event.data;
+                    if (data == '__pong__') {
+                        pong();
+                        return;
+                    }
+                    reader.readAsText();
                 };
             }
 

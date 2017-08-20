@@ -19,16 +19,6 @@
         <div id="map"></div>
         
         <script>
-            function ping() {
-                    ws.send('__ping__');
-                    tm = setTimeout(function () {
-                        // Connection Closed!
-                    }, 5000);
-            }
-
-            function pong() {
-                clearTimeout(tm);
-            }
 
             function initMap() {
 
@@ -55,6 +45,17 @@
               
                 var HOST = location.origin.replace(/^http/, 'ws')
                 var ws = new WebSocket(HOST);
+
+                function ping() {
+                    ws.send('__ping__');
+                    tm = setTimeout(function () {
+                        // Connection Closed!
+                    }, 5000);
+                }
+
+                function pong() {
+                    clearTimeout(tm);
+                }
 
                 // Blob reader: 
                 const reader = new FileReader();

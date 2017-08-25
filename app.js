@@ -8,13 +8,11 @@ app.get('/', function(req, res){
     res.status(200).send('Welcome to GPS Tracker')
 });
 
-let lat = 17.48036;
-let lon = 78.41143;
-
 app.post('/update', function(req, res){
-    console.log(req);
+    console.log("Lat: " + req.body.lat);
+    console.log("Lon: " + req.body.lon);
 
-    // io.emit('position', JSON.parse(`{"lat": ${lat}, "lon" : ${lon}}`));
+    io.emit('position', JSON.parse("{'lat': "+req.body.lat+", 'lon' : "+req.body.lon+"}"));
     res.send('Recieved');
 });
 

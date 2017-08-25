@@ -12,7 +12,7 @@ app.get('/update', function(req, res){
     console.log("Lat: " + req.query.lat);
     console.log("Lon: " + req.query.lon);
 
-    io.emit('position', JSON.parse("{\"lat\": "+req.query.lat+", \"lon\" : "+req.query.lon+"}"));
+    io.emit('position', JSON.parse("{\"lat\": "+req.query.lat+", \"lng\" : "+req.query.lon+"}"));
     res.send('Recieved');
 });
 

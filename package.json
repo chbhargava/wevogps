@@ -17,7 +17,6 @@
     "express": "4.13.4",
     "utf-8-validate": "1.2.1",
     "ws": "1.1.0",
-    "body-parser": "^1.17.2",    
     "socket.io": "^2.0.3"
   }
 }

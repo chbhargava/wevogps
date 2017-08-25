@@ -2,21 +2,17 @@
 
 var app = require('express')();
 var http = require('http').Server(app);
-var body = require('body-parser');
 var io = require('socket.io')(http);
-
-app.use(body.urlencoded({extended: true}));
-app.use(body.json());
 
 app.get('/', function(req, res){
     res.status(200).send('Welcome to GPS Tracker')
 });
 
-app.post('/update', function(req, res){
-    console.log("Lat: " + req.body);
-    //console.log("Lon: " + req.body.lon);
+app.get('/update', function(req, res){
+    console.log("Lat: " + req.query.lat);
+    console.log("Lon: " + req.query.lon);
 
-    //io.emit('position', JSON.parse("{'lat': "+req.body.lat+", 'lon' : "+req.body.lon+"}"));
+    io.emit('position', JSON.parse("{'lat': "+req.query.lat+", 'lon' : "+req.query.lon+"}"));
     res.send('Recieved');
 });
 

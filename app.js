@@ -2,7 +2,11 @@
 
 var app = require('express')();
 var http = require('http').Server(app);
+var body = require('body-parser');
 var io = require('socket.io')(http);
+
+app.use(body.urlencoded({extended: true}));
+app.use(body.json());
 
 app.get('/', function(req, res){
     res.status(200).send('Welcome to GPS Tracker')

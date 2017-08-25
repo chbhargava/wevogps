@@ -25,7 +25,8 @@
             var socket = io();
 
             function initMap() {
-
+                var state = {lat: 17.377631, lng: 78.478603};
+                
                 var map = new google.maps.Map(document.getElementById('map'), {
                     center: state,
                     zoom: 14

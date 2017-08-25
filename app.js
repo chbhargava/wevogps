@@ -12,7 +12,7 @@ let lat = 17.48036;
 let lon = 78.41143;
 
 app.post('/update', function(req, res){
-    console.log(req.body);
+    console.log(req);
 
     // io.emit('position', JSON.parse(`{"lat": ${lat}, "lon" : ${lon}}`));
     res.send('Recieved');

@@ -13,10 +13,10 @@ app.get('/', function(req, res){
 });
 
 app.post('/update', function(req, res){
-    console.log("Lat: " + req.body.lat);
-    console.log("Lon: " + req.body.lon);
+    console.log("Lat: " + req.body);
+    //console.log("Lon: " + req.body.lon);
 
-    io.emit('position', JSON.parse("{'lat': "+req.body.lat+", 'lon' : "+req.body.lon+"}"));
+    //io.emit('position', JSON.parse("{'lat': "+req.body.lat+", 'lon' : "+req.body.lon+"}"));
     res.send('Recieved');
 });
 

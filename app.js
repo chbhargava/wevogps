@@ -9,10 +9,19 @@ app.get('/', function(req, res){
 });
 
 app.get('/update', function(req, res){
-    console.log("Lat: " + req.query.lat);
-    console.log("Lon: " + req.query.lon);
+    var message = req.query;
+    console.log("Got: " + message);
+    var loc_time = message.split(":");
+    if(loc_time.length < 2) {
+        return;
+    }
+    var location = loc_time[0];
+    var arr = location.split(",");
+    if(arr.length < 2) {
+        return;
+    }
 
-    io.emit('position', JSON.parse("{\"lat\": "+req.query.lat+", \"lng\" : "+req.query.lon+"}"));
+    io.emit('position', JSON.parse("{\"lat\": "+arr[0]+", \"lng\" : "+arr[1]+", \"time\": "+loc_time[1]+"}"));
     res.send('Recieved');
 });
 

@@ -9,7 +9,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/update', function(req, res){
-    var message = req.query;
+    var message = req.query.l;
     console.log("Got: " + message);
     var loc_time = message.split(":");
     if(loc_time.length < 2) {
